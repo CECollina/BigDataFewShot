@@ -1,5 +1,8 @@
 # BigDataFewShot
 
+## Citation
+
+```
 @inproceedings{liu-etal-2022-imagearg,
     title = "{I}mage{A}rg: A Multi-modal Tweet Dataset for Image Persuasiveness Mining",
     author = "Liu, Zhexiong  and Guo, Meiqi  and Dai, Yue  and Litman, Diane",
@@ -21,3 +24,4 @@
     address = "Online and in Singapore",
     publisher = "Association for Computational Linguistics"
     }
+```

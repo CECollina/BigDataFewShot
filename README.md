@@ -25,3 +25,5 @@
     publisher = "Association for Computational Linguistics"
     }
 ```
+# Textual Analysis on Tweets - Gun Control
+# Textual Analysis on Tweets - Abortion 

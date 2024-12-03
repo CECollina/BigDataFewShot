@@ -14,6 +14,13 @@ images. The accuracy is recorded, and compared to the initial results.
 
 """
 
+#Function to interpret stance from the model response:
+def interpretStance(llmOutput):
+    llmOutput = llmOutput.lower()
+    if "support" in llmOutput:
+        return "support"
+    return "oppose"
+
 #Collect the image paths, as well as the image stances, for the query set:
 queryPaths=[]
 queryStances=[]
@@ -25,7 +32,7 @@ with open('Textual Tweet Training/Abortion/AbortionImageQueryPaths.csv', 'r') as
 
 #Without providing context, record the model's responses:
 print("Pre-Trained Model Results:")
-promptText="Determine if the following image supports abortion, opposes abortion, or is neutral. For each image, only respond with a single word: support, oppose, or neutral"
+promptText="Determine if the following image supports abortion or opposes abortion. For each image, only respond with a single word: support, oppose"
 
 #Iterate through each query image, and find the result:
 responseAr=[]
@@ -40,15 +47,16 @@ for tempPath in queryPaths:
   )
   #Extract the model's response about the image:
   cleanedText = modelResponse['message']['content'].strip()
-  responseAr.append(cleanedText)
-  print(cleanedText)
+  stanceResp=interpretStance(cleanedText)
+
+  responseAr.append(stanceResp)
+  print(stanceResp)
 
 print("Actual Stances:\n")
 print(queryStances)
 print("Generated Stances:\n")
 print(responseAr)
 
-"""
 print("---")
 print("Trained (Few-Shot) Model Responses: ")
 
@@ -83,11 +91,13 @@ for tempPath in queryPaths:
   )
   #Extract the model's response about the image:
   cleanedText = modelResponse['message']['content'].strip()
+  stanceResp=interpretStance(cleanedText)
+
   responseAr.append(cleanedText)
+  print(stanceResp)
 
 #print(f"Model Response: {cleanedText}")
 print("Actual Stances:\n")
 print(queryStances)
 print("Generated Stances:\n")
 print(responseAr)
-"""

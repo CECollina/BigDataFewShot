@@ -14,23 +14,22 @@ with open('Textual Tweet Training/Abortion/AbortionImageTrainingPaths.csv', 'r')
         imagePaths.append(tempRow[0])
         imageStance.append(tempRow[1])
 
-promptText="""
-  Here are examples of images that support abortion: """
+promptText="Here are examples of images that support abortion:\n"
 
 tempCount=0
 for imagePath in imagePaths:
     if tempCount<5:
-        promptText+=imagePath+" "
+        promptText+=imagePath+"\n"
     tempCount+=1
 
-promptText+=". Now, here are examples of images that oppose abortion: "
+promptText+="Now, here are examples of images that oppose abortion:\n"
 tempCount=0
 for imagePath in imagePaths:
     if tempCount>4:
-        promptText+=imagePath+" "
+        promptText+=imagePath+"\n"
     tempCount+=1
 
-promptText+=". Please describe what is shown in the second example image. Be descriptive."
+promptText+="Please describe what is shown in the second example image. Be descriptive."
 
 print(promptText)
 

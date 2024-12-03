@@ -8,18 +8,18 @@ client = Client()
 #Read all of the image paths from the CSV file, along with the image stance:
 imagePaths=[]
 imageStance=[]
-with open('Textual Tweet Training/Abortion/AbortionImageTrainingPaths2.csv', 'r') as file:
+with open('Textual Tweet Training/Abortion/AbortionImageTrainingPaths.csv', 'r') as file:
     csvReader = csv.reader(file)
     for tempRow in csvReader:
         imagePaths.append(tempRow[0])
         imageStance.append(tempRow[1])
 
-promptText="Here are some example images, as well as whether the image supports or opposes abortion:\n"
+promptText="Here are some example images:\n"
 
 for itNum in range(len(imagePaths)):
-    promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
+    promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+"\n"
 
-promptText+="Describe each image in the list. Be descriptive, and specify things are in the image. "
+promptText+="Describe Image #3. Be descriptive, and specify things are in the image. "
 
 print(promptText)
 

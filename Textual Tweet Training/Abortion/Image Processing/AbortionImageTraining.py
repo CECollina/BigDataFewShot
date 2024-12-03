@@ -5,6 +5,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 client = Client()
 
+#TEST
 """
 This program uses prompt engineering coupled with the few-shot learning method. The
 model is asked to determine whether several images support or oppose abortion. No context is provided

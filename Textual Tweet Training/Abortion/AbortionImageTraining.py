@@ -14,13 +14,33 @@ with open('Textual Tweet Training/Abortion/AbortionImageTrainingPaths.csv', 'r')
         imagePaths.append(tempRow[0])
         imageStance.append(tempRow[1])
 
+promptText="""
+  Here are examples of images that support abortion: """
+
+tempCount=0
+for imagePath in imagePaths:
+    if tempCount<5:
+        promptText+=imagePath+" "
+    tempCount+=1
+
+promptText+=". Now, here are examples of images that oppose abortion: "
+tempCount=0
+for imagePath in imagePaths:
+    if tempCount>4:
+        promptText+=imagePath+" "
+    tempCount+=1
+
+promptText+=". Please describe what is shown in the second example image. Be descriptive."
+
+print(promptText)
+
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 modelResponse = ollama.chat(
     model="llama3.2-vision",
     messages=[{
       "role": "user",
-      "content": "Classify the stance of the following image on abortion as either 'support' or 'oppose'. Respond with a single word: support or oppose.",
-      "images": [imagePaths[1]]
+      "content": promptText,
+      "images": [imagePaths[7]]
     }],
 )
 

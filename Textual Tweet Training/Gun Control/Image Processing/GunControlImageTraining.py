@@ -30,7 +30,7 @@ with open('Textual Tweet Training/Gun Control/Image Processing/GunControlImageQu
         queryStances.append(tempRow[1])
 
 #Without providing context, record the model's responses:
-print("Pre-Trained Model Results:")
+print("LLM Results Prior To Training:")
 promptText="Determine if the following image supports limiting access to guns, or opposes limiting access to guns. For each image, only respond with a single word: support, oppose"
 
 #Iterate through each query image, and find the result:
@@ -47,17 +47,18 @@ for tempPath in queryPaths:
   #Extract the model's response about the image:
   cleanedText = modelResponse['message']['content'].strip()
   stanceResp=interpretStance(cleanedText)
-
   responseAr.append(stanceResp)
-  print(stanceResp)
 
-print("Actual Stances:\n")
-print(queryStances)
-print("Generated Stances:\n")
-print(responseAr)
+#Calculate the accuracy:
+amountCorrect=0
+for tempInd in range(len(responseAr)):
+    if(queryStances[tempInd]==responseAr[tempInd]):
+        amountCorrect+=1
+
+print("Accuracy: %"+str(amountCorrect/10)*100)
 
 print("---")
-print("Trained (Few-Shot) Model Responses: ")
+print("Trained (Few-Shot) LLM Responses: ")
 
 responseAr=[]
 
@@ -91,12 +92,12 @@ for tempPath in queryPaths:
   #Extract the model's response about the image:
   cleanedText = modelResponse['message']['content'].strip()
   stanceResp=interpretStance(cleanedText)
-
   responseAr.append(stanceResp)
-  print(stanceResp)
 
-#print(f"Model Response: {cleanedText}")
-print("Actual Stances:\n")
-print(queryStances)
-print("Generated Stances:\n")
-print(responseAr)
+#Calculate the accuracy:
+amountCorrect=0
+for tempInd in range(len(responseAr)):
+    if(queryStances[tempInd]==responseAr[tempInd]):
+        amountCorrect+=1
+
+print("Accuracy: %"+str(amountCorrect/10)*100)

@@ -31,7 +31,7 @@ with open('Textual Tweet Training/Gun Control/Image Processing/GunControlImageQu
 
 #Without providing context, record the model's responses:
 print("LLM Results Prior To Training:")
-promptText="Determine if the following image supports limiting access to guns, or opposes limiting access to guns. For each image, only respond with a single word: support, oppose"
+promptText="Determine if the following image supports limiting access to guns, or opposes limiting access to guns. Only respond with a single word: support, oppose"
 
 #Iterate through each query image, and find the result:
 responseAr=[]
@@ -77,7 +77,7 @@ promptText="Here are some example images, as well as whether the image supports 
 for itNum in range(len(imagePaths)):
     promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
 
-promptText+="Based on the example images, determine if the following image supports limiting access to guns, or opposes limiting access to guns. For each image, only respond with a single word: support, oppose"
+promptText+="Based on the example images, determine if the following image supports limiting access to guns, or opposes limiting access to guns. Only respond with a single word: support, oppose"
 
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 for tempPath in queryPaths:

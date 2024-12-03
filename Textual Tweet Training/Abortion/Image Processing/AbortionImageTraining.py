@@ -24,7 +24,7 @@ def interpretStance(llmOutput):
 #Collect the image paths, as well as the image stances, for the query set:
 queryPaths=[]
 queryStances=[]
-with open('Textual Tweet Training/Abortion/AbortionImageQueryPaths.csv', 'r') as file:
+with open('Textual Tweet Training/Abortion/Image Processing/AbortionImageQueryPaths.csv', 'r') as file:
     csvReader = csv.reader(file)
     for tempRow in csvReader:
         queryPaths.append(tempRow[0])
@@ -65,7 +65,7 @@ responseAr=[]
 #Read all of the example image paths from the CSV file, along with the image stance:
 imagePaths=[]
 imageStance=[]
-with open('Textual Tweet Training/Abortion/AbortionImageTrainingPaths.csv', 'r') as file:
+with open('Textual Tweet Training/Abortion/Image Processing/AbortionImageTrainingPaths.csv', 'r') as file:
     csvReader = csv.reader(file)
     for tempRow in csvReader:
         imagePaths.append(tempRow[0])

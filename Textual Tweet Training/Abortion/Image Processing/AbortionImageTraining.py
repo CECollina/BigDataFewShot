@@ -86,7 +86,7 @@ for tempPath in queryPaths:
       messages=[{
         "role": "user",
         "content": promptText,
-        "images": [queryPaths]
+        "images": [tempPath]
       }],
   )
   #Extract the model's response about the image:

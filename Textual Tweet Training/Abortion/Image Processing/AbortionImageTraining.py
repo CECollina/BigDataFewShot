@@ -11,7 +11,6 @@ model is asked to determine whether several images support or oppose abortion. N
 within the prompt. The accuracy is recorded. Then, the model is provided with context within the
 prompt (i.e. example images and their stance), and then asked to determine the stance of the same initial
 images. The accuracy is recorded, and compared to the initial results.
-
 """
 
 #Function to interpret stance from the model response:

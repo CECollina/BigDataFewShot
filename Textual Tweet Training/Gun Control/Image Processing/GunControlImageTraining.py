@@ -32,7 +32,7 @@ with open('Textual Tweet Training/Gun Control/Image Processing/GunControlImageTr
 
 #Without providing context, record the model's responses:
 print("Pre-Trained Model Results:")
-promptText="Determine if the following image supports access to guns or opposes access to guns. For each image, only respond with a single word: support, oppose"
+promptText="Determine if the following image supports or opposes gun control. For each image, only respond with a single word: support, oppose"
 
 #Iterate through each query image, and find the result:
 responseAr=[]
@@ -72,12 +72,12 @@ with open('Textual Tweet Training/Abortion/Image Processing/GunControlImageQuery
         imageStance.append(tempRow[1])
 
 #After providing context with few-shot learning, provide the model's response:
-promptText="Here are some example images, as well as whether the image supports or opposes access to guns:\n"
+promptText="Here are some example images, as well as whether the image supports or opposes gun control:\n"
 
 for itNum in range(len(imagePaths)):
     promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
 
-promptText+="Based on the example images, determine if the following image supports access to guns or opposes access to guns. For each image, only respond with a single word: support, oppose"
+promptText+="Based on the example images, determine if the following image supports or opposes gun control. For each image, only respond with a single word: support, oppose"
 
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 for tempPath in queryPaths:

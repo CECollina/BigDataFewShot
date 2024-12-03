@@ -72,10 +72,10 @@ with open('Textual Tweet Training/Gun Control/Image Processing/GunControlImageTr
         imageStance.append(tempRow[1])
 
 #After providing context with few-shot learning, provide the model's response:
-promptText="Here are some example images, as well as whether the image supports limiting access to guns, or opposes limiting access to guns:\n"
+promptText="Here are some example images, as well as whether the image supports limiting access to guns, or opposes limiting access to guns. The image path and the image stance are separated by a comma (,):\n"
 
 for itNum in range(len(imagePaths)):
-    promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
+    promptText+=imagePaths[itNum]+","+imageStance[itNum]+"\n"
 
 promptText+="Based on the example images, determine if the following image supports limiting access to guns, or opposes limiting access to guns. Only respond with a single word: support, oppose"
 

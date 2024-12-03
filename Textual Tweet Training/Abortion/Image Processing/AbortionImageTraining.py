@@ -77,7 +77,7 @@ promptText="Here are some example images, as well as whether the image supports 
 for itNum in range(len(imagePaths)):
     promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
 
-promptText+="Determine if the following images support abortion, oppose abortion, or are neutral. For each image, respond with a single word: support, oppose, neutral."
+promptText+="Based on the example images, determine if the following image supports abortion or opposes abortion. For each image, only respond with a single word: support, oppose"
 
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 for tempPath in queryPaths:

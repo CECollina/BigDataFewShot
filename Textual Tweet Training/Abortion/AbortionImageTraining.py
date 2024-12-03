@@ -25,7 +25,7 @@ with open('Textual Tweet Training/Abortion/AbortionImageQueryPaths.csv', 'r') as
 
 #Without providing context, record the model's responses:
 print("Pre-Trained Model Results:")
-promptText="Determine if the following images support abortion, oppose abortion, or are neutral. For each image, respond with a single word: support, oppose, or neutral."
+promptText="Determine if the following image supports abortion, opposes abortion, or is neutral. For each image, only respond with a single word: support, oppose, or neutral"
 
 #Iterate through each query image, and find the result:
 responseAr=[]
@@ -41,12 +41,14 @@ for tempPath in queryPaths:
   #Extract the model's response about the image:
   cleanedText = modelResponse['message']['content'].strip()
   responseAr.append(cleanedText)
+  print(cleanedText)
 
 print("Actual Stances:\n")
 print(queryStances)
 print("Generated Stances:\n")
 print(responseAr)
 
+"""
 print("---")
 print("Trained (Few-Shot) Model Responses: ")
 
@@ -88,3 +90,4 @@ print("Actual Stances:\n")
 print(queryStances)
 print("Generated Stances:\n")
 print(responseAr)
+"""

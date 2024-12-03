@@ -55,7 +55,7 @@ for tempInd in range(len(responseAr)):
     if(queryStances[tempInd]==responseAr[tempInd]):
         amountCorrect+=1
 
-print("Accuracy: %"+str(amountCorrect/10)*100)
+print("Accuracy: %"+str((amountCorrect/10)*100))
 
 print("---")
 print("Trained (Few-Shot) LLM Responses: ")
@@ -100,4 +100,4 @@ for tempInd in range(len(responseAr)):
     if(queryStances[tempInd]==responseAr[tempInd]):
         amountCorrect+=1
 
-print("Accuracy: %"+str(amountCorrect/10)*100)
+print("Accuracy: %"+str((amountCorrect/10)*100))

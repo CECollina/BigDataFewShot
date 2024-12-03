@@ -92,7 +92,7 @@ for tempPath in queryPaths:
   cleanedText = modelResponse['message']['content'].strip()
   stanceResp=interpretStance(cleanedText)
 
-  responseAr.append(cleanedText)
+  responseAr.append(stanceResp)
   print(stanceResp)
 
 #print(f"Model Response: {cleanedText}")

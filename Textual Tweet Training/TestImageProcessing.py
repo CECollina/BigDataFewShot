@@ -13,7 +13,7 @@ promptImage="data/dataset/dataset/Abort/1332023865665581058.jpg"
 
 #Without providing context, record the model's responses:
 print("LLM Results Prior To Training:")
-promptText="Determine if the following image supports or opposes abortion."
+promptText="Determine if the following image supports or opposes abortion, or is neutral."
 
 #Iterate through each query image, and find the result:
 modelResponse = ollama.chat(
@@ -42,12 +42,12 @@ with open('Textual Tweet Training/Abortion/Image Processing/AbortionImageTrainin
         imageStance.append(tempRow[1])
 
 #After providing context with few-shot learning, provide the model's response:
-promptText="Here are some example images, as well as whether each image supports or opposes abortion:\n"
+promptText="Here are some example image paths, as well as whether each image supports or opposes abortion:\n"
 
 for itNum in range(len(imagePaths)):
     promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
 
-promptText+="Based on the example images, determine if the following image supports or opposes abortion."
+promptText+="Analyze the example images given above. Based on the example images, determine if the following image supports or opposes abortion."
 
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 modelResponse = ollama.chat(

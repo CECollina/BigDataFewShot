@@ -13,6 +13,7 @@ prompt (i.e. example images and their stance), and then asked to determine the s
 images. The accuracy is recorded, and compared to the initial results.
 """
 
+'''FUNCTIONS'''
 #Function to interpret stance from the model response:
 def interpretStance(llmOutput):
     llmOutput = llmOutput.lower()
@@ -20,6 +21,7 @@ def interpretStance(llmOutput):
         return "support"
     return "oppose"
 
+'''---UNTRAINED MODEL---'''
 #Collect the image paths, as well as the image stances, for the query set:
 queryPaths=[]
 queryStances=[]
@@ -58,8 +60,9 @@ for tempInd in range(len(responseAr)):
 print("Accuracy: %"+str((amountCorrect/10)*100))
 
 print("---")
-print("Trained (Few-Shot) LLM Responses: ")
 
+'''---TRAINED MODEL---'''
+print("Trained (Few-Shot) LLM Responses: ")
 responseAr=[]
 
 #Read all of the example image paths from the CSV file, along with the image stance:
@@ -71,13 +74,23 @@ with open('Textual Tweet Training/Abortion/Image Processing/AbortionImageTrainin
         imagePaths.append(tempRow[0])
         imageStance.append(tempRow[1])
 
+#Produce a description for each of the training images:
+descriptionStrings=[]
+for tempInd in range(len(imagePaths)):
+    modelResponse = ollama.chat(
+        model="llama3.2-vision",
+        messages=[{
+            "role": "user",
+            "content": "Please provide a description of the image in grammatically-correct, paragraph form, and explain how the image "+imageStance[tempInd]+" abortion.",
+            "images": [imagePaths[tempInd]]
+        }],
+    )
+    cleanedText = modelResponse['message']['content'].strip()
+    descriptionStrings+=cleanedText+"\n"
+
 #After providing context with few-shot learning, provide the model's response:
-promptText="Here are some example images, as well as whether the image supports or opposes abortion:\n"
-
-for itNum in range(len(imagePaths)):
-    promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
-
-promptText+="Based on the example images, determine if the following image supports access to abortion or opposes access to abortion. Only respond with a single word: support, oppose"
+promptText="Here are some example images, as well as whether the image supports or opposes abortion:\n"+descriptionStrings
+promptText+="\nBased on the example images, determine if the following image supports access to abortion or opposes access to abortion. Only respond with a single word: support, oppose"
 
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 for tempPath in queryPaths:

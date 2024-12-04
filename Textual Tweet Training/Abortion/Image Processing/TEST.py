@@ -72,11 +72,9 @@ text = processor.apply_chat_template(
 )
 text
 
-
-
 from peft import LoraConfig
 
-# LoRA config based on QLoRA paper & Sebastian Raschka experiment
+#LoRA config. based on QLoRA paper & Sebastian Raschka experiment:
 peft_config = LoraConfig(
         lora_alpha=16,
         lora_dropout=0.05,
@@ -86,10 +84,7 @@ peft_config = LoraConfig(
         task_type="CAUSAL_LM",
 )
 
-     
-
 from trl import SFTConfig
-
 
 args = SFTConfig(
     output_dir="fine-tuned-visionllama", # directory to save and repository id
@@ -118,18 +113,18 @@ from transformers import Qwen2VLProcessor
 from qwen_vl_utils import process_vision_info
 
 def collate_fn(examples):
-    #Get the texts and images, and apply the chat template
+    #Get the texts and images, and apply the chat template:
     texts = [processor.apply_chat_template(example["messages"], tokenize=False) for example in examples]
     image_inputs = [process_vision_info(example["messages"])[0] for example in examples]
 
-    #Tokenize the texts and process the images
+    #Tokenize the texts and process the images:
     batch = processor(text=texts, images=image_inputs, return_tensors="pt", padding=True)
 
-    #The labels are the input_ids, and we mask the padding tokens in the loss computation
+    #The labels are the input_ids, and we mask the padding tokens in the loss computation:
     labels = batch["input_ids"].clone()
     labels[labels == processor.tokenizer.pad_token_id] = -100
 
-    #Ignore the image token index in the loss computation (model specific)
+    #Ignore the image token index in the loss computation (model specific):
     if isinstance(processor, Qwen2VLProcessor):
         image_tokens = [151652,151653,151655]
     else:
@@ -147,7 +142,7 @@ trainer = SFTTrainer(
     args=args,
     train_dataset=dataset,
     data_collator=collate_fn,
-    dataset_text_field="", # needs dummy value
+    dataset_text_field="",
     peft_config=peft_config,
     tokenizer=processor.tokenizer,
 )

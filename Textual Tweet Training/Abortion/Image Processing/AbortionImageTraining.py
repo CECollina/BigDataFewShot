@@ -75,7 +75,7 @@ with open('Textual Tweet Training/Abortion/Image Processing/AbortionImageTrainin
         imageStance.append(tempRow[1])
 
 #Produce a description for each of the training images:
-descriptionStrings=[]
+descriptionStrings=""
 for tempInd in range(len(imagePaths)):
     modelResponse = ollama.chat(
         model="llama3.2-vision",

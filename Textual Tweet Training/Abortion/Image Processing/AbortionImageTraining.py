@@ -13,7 +13,7 @@ prompt (i.e. example images and their stance), and then asked to determine the s
 images. The accuracy is recorded, and compared to the initial results.
 """
 
-'''FUNCTIONS'''
+'''---FUNCTIONS---'''
 #Function to interpret stance from the model response:
 def interpretStance(llmOutput):
     llmOutput = llmOutput.lower()
@@ -81,7 +81,7 @@ for tempInd in range(len(imagePaths)):
         model="llama3.2-vision",
         messages=[{
             "role": "user",
-            "content": "Please provide a description of the image in grammatically-correct, paragraph form, and explain how the image "+imageStance[tempInd]+" abortion.",
+            "content": "Please provide a description of the image in grammatically-correct, paragraph form, and explain how the image "+imageStance[tempInd]+"s abortion.",
             "images": [imagePaths[tempInd]]
         }],
     )

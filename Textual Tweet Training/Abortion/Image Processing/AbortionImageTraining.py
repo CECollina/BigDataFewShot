@@ -49,6 +49,10 @@ for tempPath in queryPaths:
   #Extract the model's response about the image:
   cleanedText = modelResponse['message']['content'].strip()
   stanceResp=interpretStance(cleanedText)
+
+  #REMOVE:
+  print(stanceResp)
+  
   responseAr.append(stanceResp)
   
 #Calculate the accuracy:

@@ -77,11 +77,16 @@ with open('Textual Tweet Training/Persuasive/Abortion/AbortionImagePersuasiveTra
 #Produce a description for each of the training images:
 descriptionStrings=""
 for tempInd in range(len(imagePaths)):
+    if imageStance[tempInd]=="yes":
+        tempStr="is"
+    else:
+        tempStr="is not"
+
     modelResponse = ollama.chat(
         model="llama3.2-vision",
         messages=[{
             "role": "user",
-            "content": "Please provide a description of the image in grammatically-correct, paragraph form, and explain how the image "+imageStance[tempInd]+" persuasive.",
+            "content": "Please provide a description of the image in grammatically-correct, paragraph form, and explain how the image "+tempStr+" persuasive.",
             "images": [imagePaths[tempInd]]
         }],
     )

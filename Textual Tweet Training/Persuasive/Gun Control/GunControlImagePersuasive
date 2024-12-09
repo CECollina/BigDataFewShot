@@ -7,7 +7,7 @@ client = Client()
 
 """
 This program uses prompt engineering coupled with the few-shot learning method. The
-model is asked to determine whether an image is persuasive or not in regards to abortion. No context is provided
+model is asked to determine whether an image is persuasive or not in regards to gun control. No context is provided
 within the prompt. The accuracy is recorded. Then, the model is provided with context within the
 prompt (i.e. example images and their persuasiveness), and then asked to determine the persuasiveness of the same initial
 images. The accuracy is recorded, and compared to the initial results.
@@ -25,7 +25,7 @@ def interpretStance(llmOutput):
 #Collect the image paths, as well as the image stances, for the query set:
 queryPaths=[]
 queryStances=[]
-with open('Textual Tweet Training/Persuasive/Abortion/AbortionImagePersuasiveQuery.csv', 'r') as file:
+with open('Textual Tweet Training/Persuasive/Gun Control/GunControlPersuasiveQuery.csv', 'r') as file:
     csvReader = csv.reader(file)
     for tempRow in csvReader:
         queryPaths.append(tempRow[0])
@@ -68,7 +68,7 @@ responseAr=[]
 #Read all of the example image paths from the CSV file, along with the image stance:
 imagePaths=[]
 imageStance=[]
-with open('Textual Tweet Training/Persuasive/Abortion/AbortionImagePersuasiveTrain.csv', 'r') as file:
+with open('Textual Tweet Training/Persuasive/Gun Control/GunControlPersuasiveTrain.csv', 'r') as file:
     csvReader = csv.reader(file)
     for tempRow in csvReader:
         imagePaths.append(tempRow[0])

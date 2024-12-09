@@ -9,7 +9,7 @@ client = Client()
 This program uses prompt engineering coupled with the few-shot learning method. The
 model is asked to determine whether an image is persuasive or not in regards to abortion. No context is provided
 within the prompt. The accuracy is recorded. Then, the model is provided with context within the
-prompt (i.e. example images and their stance), and then asked to determine the persuasiveness of the same initial
+prompt (i.e. example images and their persuasiveness), and then asked to determine the persuasiveness of the same initial
 images. The accuracy is recorded, and compared to the initial results.
 """
 

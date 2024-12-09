@@ -9,11 +9,11 @@ client = Client()
 This program tests the effect of providing context to the LLM through images.
 """
 #Test image:
-promptImage="data/dataset/dataset/Abort/1332023865665581058.jpg"
+promptImage="data/dataset/dataset/Abort/1079913760536571904.jpg"
 
 #Without providing context, record the model's responses:
 print("LLM Results Prior To Training:")
-promptText="Determine if the following image supports or opposes abortion, or is neutral."
+promptText="Determine if the following image supports, opposes, or is neutral to abortion."
 
 #Iterate through each query image, and find the result:
 modelResponse = ollama.chat(
@@ -47,7 +47,7 @@ promptText="Here are some example image paths, as well as whether each image sup
 for itNum in range(len(imagePaths)):
     promptText+="Image #"+str(itNum+1)+": "+imagePaths[itNum]+" - "+imageStance[itNum]+"\n"
 
-promptText+="Analyze the example images given above. Based on the example images, determine if the following image supports or opposes abortion."
+promptText+="Based on the above example images, determine if the following image supports or opposes abortion."
 
 #Use Ollama to analyze the image with Llama 3.2-Vision:
 modelResponse = ollama.chat(
